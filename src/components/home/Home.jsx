@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card from "../card/Card";
+import Quote from "../quote/Quote";
 import axios from "axios";
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
         <p className="text-2xl m-20 text-center">
           Welcome to Daily Inspiring Quotations
         </p>
-        <Card quote={quote} />
+        <Quote quote={quote} />
       </div>
     </>
   );
