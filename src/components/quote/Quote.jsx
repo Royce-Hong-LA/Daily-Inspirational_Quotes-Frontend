@@ -4,7 +4,7 @@ import Card from "../card/card";
 const Quote = ({ quote }) => {
   return (
     <>
-      <div className="cardWrapper">
+      <div className="flex justify-center">
         {quote.map((p) => (
           <Card key={p._id} quote={p} />
         ))}
