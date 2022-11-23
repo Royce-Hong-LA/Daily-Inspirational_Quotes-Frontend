@@ -10,8 +10,8 @@ const WriteForm = () => {
   // useEffect({}, []);
 
   const submitHandler = async () => {
-    const res = await axios.post("quotes/write", newQuote);
-    console.log(res);
+    await axios.post("quotes/write", newQuote);
+    // console.log(res);
 
     // return res.data;
   };
@@ -31,22 +31,31 @@ const WriteForm = () => {
 
   return (
     <div>
-      <form action="" className="grid grid-rows m-10" onSubmit={submitHandler}>
-        <p>Author:</p>
+      <form
+        action=""
+        className="grid grid-rows justify-center w-"
+        onSubmit={submitHandler}
+      >
+        <p className=" m-5">Author</p>
         <input
           type="text"
-          className="bg-slate-300 w-60"
+          className="bg-slate-300 w-80 h-10 rounded-md"
           onChange={authorHandler}
           value={newQuote.author}
         />
-        <p>Quotes:</p>
+        <p className=" m-5">Quotes</p>
         <input
           type="text"
-          className="bg-slate-300 h-80"
+          className="bg-slate-300 w-96 h-80 rounded-md"
           onChange={quoteHandler}
           value={newQuote.quote}
         />
-        <button type="submit"> submit</button>
+        <button
+          className=" mt-10 h-20 w-80 bg-slate-400 rounded-md hover:bg-slate-500 text-2xl text-white"
+          type="submit"
+        >
+          submit
+        </button>
       </form>
     </div>
   );

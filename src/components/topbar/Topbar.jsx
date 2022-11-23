@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Topbar = () => {
+  
+
   return (
     <div className="w-100 h-20 bg-slate-400">
       <ul className="flex">
@@ -17,9 +19,14 @@ const Topbar = () => {
           <li className="m-10">about</li>
         </Link>
 
-        <Link to="/quotes">
-          <li className="m-10">Login</li>
+        <Link to="/write">
+          <li className="m-10">write</li>
         </Link>
+        
+        <Link to="/" >
+          <li className="absolute top-0 right-0 m-10 hover:bg-slate-700 w-20 h-10">Korean</li>
+        </Link>
+
       </ul>
     </div>
   );
