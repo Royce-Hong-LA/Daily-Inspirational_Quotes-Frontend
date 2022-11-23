@@ -6,18 +6,28 @@ const WriteForm = () => {
     author: "",
     quote: "",
   });
+  const [koreans, setKoreans] = useState(false);
 
-  // useEffect({}, []);
+//  useEffect(()=>{
+//    const fetchData = async()=>{
+//       const res = 
+//    }
+//  }
+//  , []);
 
   const submitHandler = async () => {
-    await axios.post("quotes/write", newQuote);
-    // console.log(res);
+    ( !koreans?
+      (await axios.post("quotes/write", newQuote)):
+      (await axios.post("korean/write", newQuote)))
+
+    console.log("inside--->",koreans);
 
     // return res.data;
   };
 
   const authorHandler = async (e) => {
     e.preventDefault();
+    console.log("author--->",koreans);
     setNewQuote({ author: e.target.value });
 
     // axios.post("/write");
@@ -29,21 +39,36 @@ const WriteForm = () => {
     // axios.post("/write");
   };
 
+  const languageChange = (e)=>{
+    e.preventDefault();
+    setKoreans(!koreans)
+    console.log(koreans)
+  }
+
   return (
-    <div>
+
       <form
         action=""
         className="grid grid-rows justify-center w-"
         onSubmit={submitHandler}
       >
-        <p className=" m-5">Author</p>
+        <div className="flex">
+          {!koreans?<p className="m-5">Author</p>:<p>작가</p>}
+          <button
+            onClick={languageChange}
+            className=" m-5 ml-80 h-10 w-20 bg-slate-400 rounded-md hover:bg-slate-500 text-2xl text-white"
+            type="submit"
+          >
+            korean
+          </button>
+        </div>
         <input
           type="text"
           className="bg-slate-300 w-80 h-10 rounded-md"
           onChange={authorHandler}
           value={newQuote.author}
         />
-        <p className=" m-5">Quotes</p>
+           {!koreans?<p className="m-5">Quote</p>:<p>명언</p>}
         <input
           type="text"
           className="bg-slate-300 w-96 h-80 rounded-md"
@@ -57,7 +82,7 @@ const WriteForm = () => {
           submit
         </button>
       </form>
-    </div>
+
   );
 };
 

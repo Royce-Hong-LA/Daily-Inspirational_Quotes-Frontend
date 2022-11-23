@@ -5,21 +5,24 @@ import axios from "axios";
 const Home = () => {
   const [quote, setQuote] = useState([]);
   const [korean, setKorean] = useState(false); 
+  console.log("from home",korean)
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = (korean?(await axios.get("korean")):(await axios.get("quotes")));
+
+      const res = (korean?
+        (await axios.get("korean")):
+        (await axios.get("quotes")));
+
       setQuote(res.data);
     };
     fetchData();
   }, [korean]);
 
-  const onLangChange = (e)=>{
-    e.preventDefault();
+  const onLangChange = ()=>{
     setKorean(!korean);
-    console.log(korean);
-
-  }
+    console.log("onchange",korean);
+  };
 
 
 
@@ -27,9 +30,9 @@ const Home = () => {
     <>
       <div className="justify-center">
         {!korean?<p className="text-2xl m-20 text-center">
-          Welcome to Daily Inspiring Quotations
+          Today's Daily Inspiring Quotation
         </p>:<p className="text-2xl m-20 text-center">
-          오늘의 명언 입니다
+          당신에게 힘이 될 오늘의 명언 입니다
         </p>}
         <Quote className="justify-center" quote={quote} />
         <div className="buttons text-white">
